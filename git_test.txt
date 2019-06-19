@@ -1,2 +1,0 @@
-I want to test something with this file.
-And this is a new test.
