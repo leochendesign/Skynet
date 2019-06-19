@@ -1,0 +1,7 @@
+.idea/
+.uploadcache/
+config/config.json
+npm-debug.log
+package-lock.json
+.vscode/
+.DS_Store
