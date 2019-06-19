@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var ejs = require('ejs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,7 +12,12 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//定义模版后缀名为html
+app.engine('.html', ejs.__express);
+//开启模版缓存
+//app.set('view cache', true);
+//设置使用模版的类型
+app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
