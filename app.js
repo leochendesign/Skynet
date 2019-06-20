@@ -2,12 +2,20 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var logger = require('morgan');
 var ejs = require('ejs');
 
+//自定义模块引入
+var validate = require('./modules/validate');
+
+//引入路由文件--get
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
-var usersRouter = require('./routes/users');
+
+//引入路由文件--post
+var loginRouterPost = require('./routes/login-post');
+
 
 var app = express();
 
@@ -24,11 +32,23 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieSession({
+  name: 'chronicleRoad',
+  keys: ['jgFGJHJKfgvUYluUT', 'QMklUrQWzVmlHddp'],
+  maxAge: 60 * 1000 * 30 //过期时间 30 分钟
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 登陆页面验证状态反向绑定
+app.use(['/login'], validate.valLogout);
+//登录验证中间件绑定
+app.get(['/'], validate.valLogin);
+
+//定义get路由
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-app.use('/users', usersRouter);
+//定义post路由
+app.use('/login-post',loginRouterPost);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

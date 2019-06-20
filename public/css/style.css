@@ -1,8 +1,24 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+/*登陆页面*/
+.login_logo {
+    text-align: center;
+}
+
+.login_logo>img {
+    width: 120px;
+    margin-top: 30px;
+}
+
+.login_logo>h3 {
+    font-size: 24px;
+    margin-bottom: 50px;
+    color: #954ddb;
 }
