@@ -1,10 +1,6 @@
 body {
-    padding: 50px;
+    padding: 60px 0 30px 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-    color: #00B7FF;
 }
 
 /*登陆页面*/
@@ -21,4 +17,132 @@ a {
     font-size: 24px;
     margin-bottom: 50px;
     color: #954ddb;
+}
+
+/*首页*/
+.page_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px #f0f0f0 solid;
+    background-color: #ffffff;
+}
+
+.page_nav .row {
+    display: flex;
+}
+
+.page_nav .nav_left {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.page_nav .nav_left img {
+    height: 30px;
+    width: 30px;
+    align-items: center;
+}
+
+.page_nav .nav_left span {
+    font-size: 18px;
+    margin-left: 10px;
+    align-items: center;
+    font-weight: bold;
+}
+
+.page_nav .nav_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.page_nav .nav_right span {
+    font-size: 18px;
+    align-items: center;
+}
+
+.page_nav .nav_right .glyphicon {
+    margin-left: 10px;
+}
+
+.my-panel .panel-heading h3 {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.my-panel .panel-heading h3 span {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 20px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.my-panel .panel-heading h3 a {
+    margin-left: 10px;
+}
+
+.article-info {
+    margin-bottom: 15px;
+}
+
+.article-info .label {
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 5px 8px;
+}
+
+.page-left-body {
+    border-bottom: 1px #dddddd solid;
+    padding-bottom: 5px
+}
+
+.page-left-list {
+    display: flex;
+    align-items: center;
+}
+
+.page-left-list span {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.page-left-list a {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.list-icon-00 {
+    background-image: url('/images/icon/01.png');
+}
+
+.list-icon-01 {
+    background-image: url('/images/icon/06.png');
+}
+
+.list-icon-02 {
+    background-image: url('/images/icon/15.png');
+}
+
+.list-icon-03 {
+    background-image: url('/images/icon/07.png');
+}
+
+.list-icon-04 {
+    background-image: url('/images/icon/04.png');
+}
+
+.list-icon-05 {
+    background-image: url('/images/icon/05.png');
 }

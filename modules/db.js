@@ -21,7 +21,7 @@ exports.findOne = function (dbname, collectionname, json, callback) {
         var result = collection.findOne(json, null, callback);
     });
 }
-//查询
+//查询全部
 exports.find = function (dbname, collectionname, json, callback) {
     connectDb(function (db) {
         const DB = db.db(dbname);
@@ -35,6 +35,14 @@ exports.findSort = function (dbname, collectionname, json, number, callback) {
         const DB = db.db(dbname);
         const collection = DB.collection(collectionname);
         var result = collection.find().sort(json).limit(number).toArray(callback);
+    });
+}
+//查询某个结果记录的条数
+exports.findCount = function (dbname, collectionname, json, callback) {
+    connectDb(function (db) {
+        const DB = db.db(dbname);
+        const collection = DB.collection(collectionname);
+        collection.find(json).count(callback);
     });
 }
 
