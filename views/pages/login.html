@@ -41,10 +41,13 @@
         password.focus();
         return false;
       }
+      //密码加密
+      var md5Pass = $.md5(password.val());
+      //提交
       var loadLayer = layer.load(layerconfig.load.icon, layerconfig.load.shade);
       $.post('/login-post', {
         userName: userName.val(),
-        password: password.val()
+        password: md5Pass
       }, function (data) {
         layer.close(loadLayer);
         if (data.code == 0) {

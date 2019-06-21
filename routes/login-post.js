@@ -34,7 +34,6 @@ router.post('/sign-in', function (req, res, next) {
                 res.send({ code: 500, data: '数据查询失败' });
                 return false;
             }
-            console.log(docs.length);
             const lastId = docs[0] ? docs[0].id : 0;
             //插入数据
             const instertDoc = {
