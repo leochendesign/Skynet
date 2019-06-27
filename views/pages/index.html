@@ -25,27 +25,27 @@
           <div class="panel-body page-left-body">
             <p class="page-left-list">
               <span class="list-icon-00"></span>
-              <a href="#">全部（10）</a>
+              <a href="#">全部（<%=type00Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-01"></span>
-              <a href="#">日志（10）</a>
+              <a href="#">日志（<%=type01Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-02"></span>
-              <a href="#">笔记（10）</a>
+              <a href="#">笔记（<%=type02Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-03"></span>
-              <a href="#">随笔（10）</a>
+              <a href="#">随笔（<%=type03Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-04"></span>
-              <a href="#">杂谈（10）</a>
+              <a href="#">杂谈（<%=type04Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-05"></span>
-              <a href="#">其他（10）</a>
+              <a href="#">其他（<%=type05Num%>）</a>
             </p>
           </div>
           <div class="panel-body page-left-body">
@@ -74,24 +74,27 @@
 
       <!--右侧视图栏-->
       <div class="col-xs-12 col-sm-8">
+        <%articleList.forEach(function(item){%>
         <div class="panel panel-default my-panel">
           <div class="panel-heading">
             <h3>
-              <span class="list-icon-01"></span>
-              <a href="#">文章标题</a>
+              <span class="list-icon-0<%=item.type%>"></span>
+              <a href="#"><%=item.title%></a>
             </h3>
           </div>
           <div class="panel-body">
             <div class="article-info">
-              <span class="label label-info">作者：username</span>
-              <span class="label label-info">创建时间：2019-1-1 17:17:17</span>
-              <span class="label label-info">更新时间：2019-1-1 17:17:17</span>
+              <span class="label label-info">作者：<%=item.user_name%></span>
+              <span class="label label-info">创建时间：<%=item.create_time%></span>
+              <span class="label label-info">更新时间：<%=item.upData_time%></span>
             </div>
             <p class="lead">
-              文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要文章内容摘要
+              <%=item.general%>
             </p>
           </div>
         </div>
+        <%})%>
+
       </div>
 
     </div>

@@ -82,6 +82,7 @@ body {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
+    border: 1px solid #eeeeee;
 }
 
 .my-panel .panel-heading h3 a {

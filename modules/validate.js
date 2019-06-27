@@ -28,9 +28,6 @@ function valLogout(req, res, next) {
         next();
     }
 }
-
-
-
 //所有异步请求的登陆态验证写在这里--待完善
 
 

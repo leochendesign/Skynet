@@ -35,7 +35,7 @@ app.use(cookieParser());
 app.use(cookieSession({
   name: 'chronicleRoad',
   keys: ['jgFGJHJKfgvUYluUT', 'QMklUrQWzVmlHddp'],
-  maxAge: 60 * 1000 * 30 //过期时间 30 分钟
+  maxAge: 60 * 1000 * 60 //过期时间 60 分钟
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -48,22 +48,24 @@ app.get(['/'], validate.valLogin);
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 //定义post路由
-app.use('/login-post',loginRouterPost);
+app.use('/login-post', loginRouterPost);
 
+/*
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('err/error',{title:'错误'});
+  res.render('err/error', { title: '错误' });
 });
+*/
 
 module.exports = app;

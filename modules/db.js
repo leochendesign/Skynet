@@ -53,5 +53,4 @@ exports.insertOne = function (dbname, collectionname, json, callback) {
         const collection = DB.collection(collectionname);
         collection.insertOne(json, callback)
     })
-
 }
