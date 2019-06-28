@@ -75,6 +75,23 @@
         }
       });
     });
+
+    //监听回车键
+    $('#exampleInputUser').on('keypress', function (event) {
+      if (event.keyCode == 13) {
+        $('#subBtn').trigger('click');
+      }
+    });
+    $('#exampleInputPassword').on('keypress', function () {
+      if (event.keyCode == 13) {
+        $('#subBtn').trigger('click');
+      }
+    });
+    $('#exampleInputPassword2').on('keypress', function () {
+      if (event.keyCode == 13) {
+        $('#subBtn').trigger('click');
+      }
+    });
   </script>
 </body>
 

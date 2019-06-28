@@ -147,3 +147,10 @@ body {
 .list-icon-05 {
     background-image: url('/images/icon/05.png');
 }
+
+/*首页关键字样式*/
+.keyword_style {
+    background-color: #edf140;
+    font-style: normal;
+    color: #337ab7;
+}

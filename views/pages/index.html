@@ -10,8 +10,8 @@
           <span class="visible-xs">CRoad</span>
         </div>
         <div class="col-xs-6 nav_right">
-          <span class="hidden-xs">username</span>
-          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          <span class="hidden-xs"><%=user_name%></span>
+          <span class="glyphicon glyphicon-off" aria-hidden="true" onclick="window.location.href='/get_out'"></span>
         </div>
       </div>
     </div>
@@ -25,43 +25,44 @@
           <div class="panel-body page-left-body">
             <p class="page-left-list">
               <span class="list-icon-00"></span>
-              <a href="#">全部（<%=type00Num%>）</a>
+              <a href="/" style="color: <%=type?'#337ab7':'#c8cc0c'%>">全部（<%=type00Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-01"></span>
-              <a href="#">日志（<%=type01Num%>）</a>
+              <a href="/?type=1" style="color: <%=type==1?'#c8cc0c':'#337ab7'%>">日志（<%=type01Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-02"></span>
-              <a href="#">笔记（<%=type02Num%>）</a>
+              <a href="/?type=2" style="color: <%=type==2?'#c8cc0c':'#337ab7'%>">笔记（<%=type02Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-03"></span>
-              <a href="#">随笔（<%=type03Num%>）</a>
+              <a href="/?type=3" style="color: <%=type==3?'#c8cc0c':'#337ab7'%>">随笔（<%=type03Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-04"></span>
-              <a href="#">杂谈（<%=type04Num%>）</a>
+              <a href="/?type=4" style="color: <%=type==4?'#c8cc0c':'#337ab7'%>">杂谈（<%=type04Num%>）</a>
             </p>
             <p class="page-left-list">
               <span class="list-icon-05"></span>
-              <a href="#">其他（<%=type05Num%>）</a>
+              <a href="/?type=5" style="color: <%=type==5?'#c8cc0c':'#337ab7'%>">其他（<%=type05Num%>）</a>
             </p>
           </div>
           <div class="panel-body page-left-body">
             <p>
-              <form class="form-horizontal">
+              <div class="form-horizontal">
                 <div class="form-group">
                   <div class="col-xs-8">
-                    <input type="text" class="form-control" placeholder="关键字">
+                    <input type="text" class="form-control" placeholder="标题/作者/摘要" id="searchInput" value="<%=keyword%>"
+                      data-type="<%=type%>">
                   </div>
                   <div class="col-xs-4">
-                    <button type="button" class="btn btn-success btn-block">
+                    <button type="button" class="btn btn-success btn-block" id="searchBtn">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </p>
           </div>
           <div class="panel-body page-left-body">
@@ -94,11 +95,66 @@
           </div>
         </div>
         <%})%>
+        <%if(articleList.length===0){%>
+        <div class="panel panel-default">
+          <h3 style="text-align: center;margin:30px 0;color:#999999;font-weight: 100">暂无数据</h3>
+        </div>
+        <%}%>
 
       </div>
 
     </div>
   </div>
+  <script>
+    $('#searchBtn').click(function(){
+      var keyword = $('#searchInput').val();
+      var searchUrl = '/?';
+      var type = $('#searchInput').attr('data-type');
+      if(keyword){
+        searchUrl = searchUrl + 'keyword=' + keyword + '&';
+      }
+      if(type){
+        searchUrl = searchUrl + 'type=' + type + '&'
+      }
+      window.location.href = searchUrl;
+    });
+
+    //监听回车键
+    $('#searchInput').on('keypress',function(event){
+      if(event.keyCode==13){
+        $('#searchBtn').trigger('click');
+      }
+    });
+
+    //循环高亮显示关键字
+    var allPanel = $('.my-panel');
+    var keyword = $('#searchInput').val();
+    for(var i=0;i<allPanel.length;i++){
+      //标题高亮
+      var thisTitle = allPanel.eq(i).find('.panel-heading h3 a');
+      textLightUp(thisTitle,keyword);
+      //作者高亮
+      var thisUserName = allPanel.eq(i).find('.panel-body .article-info span').eq(0);
+      textLightUp(thisUserName,keyword);
+      //摘要高亮
+      var thisLead = allPanel.eq(i).find('.panel-body .lead');
+      textLightUp(thisLead,keyword);
+    }
+    //设置高亮函数
+    function textLightUp(thisObj,keyword) {
+      if(keyword){
+        var thisTextArr = thisObj.text().split(keyword);
+        if(thisTextArr.length>1){
+          var newText = thisTextArr.join('<em class="keyword_style">'+keyword+'</em>');
+          thisObj.html(newText);
+        }
+      }
+    }
+
+
+
+  </script>
 </body>
+
 
 <%- include("../common/footer.html") %>

@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-4"></div>
       <div class="col-xs-12 col-sm-4">
-        <form>
+        <form id="loginForm">
           <div class="form-group">
             <label for="exampleInputUser">用户名</label>
             <input type="text" class="form-control input-lg" id="exampleInputUser" placeholder="请输入用户名" name="username">
@@ -59,6 +59,18 @@
           layer.msg(data.data);
         }
       });
+    });
+
+    //监听回车键
+    $('#exampleInputUser').on('keypress', function (event) {
+      if (event.keyCode == 13) {
+        $('#subBtn').trigger('click');
+      }
+    });
+    $('#exampleInputPassword').on('keypress', function () {
+      if (event.keyCode == 13) {
+        $('#subBtn').trigger('click');
+      }
     });
   </script>
 </body>
