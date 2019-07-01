@@ -1,0 +1,33 @@
+<%- include("../common/header.html") %>
+
+<body>
+    <div class="page_nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 nav_left">
+                    <img src="/images/logo.png" />
+                    <span class="hidden-xs">Chronicle Road</span>
+                    <span class="visible-xs">CRoad</span>
+                </div>
+                <div class="col-xs-6 nav_right">
+                    <span class="hidden-xs"><%=user_name%></span>
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"
+                        onclick="window.location.href='/get_out'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 20px">
+        <h1 class="detail_title">
+            <span class="list-icon-00"></span>
+            <em>这特么是文章标题</em>
+        </h1>
+        <div class="detail_title_info">
+            <span class="label label-info">作者：name</span>
+            <span class="label label-info">创建时间：item.create_time</span>
+            <span class="label label-info">更新时间：item.upData_time</span>
+        </div>
+    </div>
+</body>
+
+<%- include("../common/footer.html") %>

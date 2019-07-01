@@ -27,6 +27,7 @@ body {
     right: 0;
     border-bottom: 1px #f0f0f0 solid;
     background-color: #ffffff;
+    z-index: 1986;
 }
 
 .page_nav .row {
@@ -152,5 +153,30 @@ body {
 .keyword_style {
     background-color: #edf140;
     font-style: normal;
+    color: #337ab7;
+}
+
+/*详情页面*/
+.detail_title {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.detail_title span {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    border-radius: 25px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #eeeeee;
+}
+
+.detail_title em {
+    margin-left: 15px;
+    font-style: normal;
+    font-size: 36px;
     color: #337ab7;
 }

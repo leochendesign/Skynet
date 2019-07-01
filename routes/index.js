@@ -43,6 +43,15 @@ router.get('/', function (req, res, next) {
   });
 });
 
+//详情页面
+router.get('/detail', function (req, res, next) {
+  res.render('pages/detail', {
+    title: '纪路',
+    user_name: req.session.userName,
+  });
+
+});
+
 //退出登陆
 router.get('/get_out', function (req, res, next) {
   if (req.session) {
