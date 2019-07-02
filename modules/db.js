@@ -54,3 +54,12 @@ exports.insertOne = function (dbname, collectionname, json, callback) {
         collection.insertOne(json, callback)
     })
 }
+
+//删除数据
+exports.remove = function (dbname, collectionname, json, callback) {
+    connectDb(function (db) {
+        const DB = db.db(dbname);
+        const collection = DB.collection(collectionname);
+        collection.remove(json, callback)
+    })
+}

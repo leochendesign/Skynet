@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 
 //引入路由文件--post
+var indexRouterPost = require('./routes/index-post');
 var loginRouterPost = require('./routes/login-post');
 
 
@@ -48,6 +49,7 @@ app.get(['/'], validate.valLogin);
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 //定义post路由
+app.use('/post', indexRouterPost);
 app.use('/login-post', loginRouterPost);
 
 /*

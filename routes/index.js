@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var DB = require('./../modules/db.js');
 var DBP = require('./../modules/dbPromise.js');
 
 //首页
@@ -45,11 +46,18 @@ router.get('/', function (req, res, next) {
 
 //详情页面
 router.get('/detail', function (req, res, next) {
-  res.render('pages/detail', {
-    title: '纪路',
-    user_name: req.session.userName,
+  const thisId = req.query.id * 1;
+  DB.find('myData', 'articleData', { id: thisId }, function (err, docs) {
+    if (err) {
+      res.render('err/error', { title: '错误' });
+    } else {
+      res.render('pages/detail', {
+        title: '纪路',
+        user_name: req.session.userName,
+        data: docs[0],
+      });
+    }
   });
-
 });
 
 //退出登陆

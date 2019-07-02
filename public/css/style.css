@@ -180,3 +180,30 @@ body {
     font-size: 36px;
     color: #337ab7;
 }
+
+.detail_body {
+    padding: 40px 0;
+    font-size: 18px;
+    color: #666666;
+}
+
+.detail_body p {
+    text-indent: 36px;
+}
+
+.detail_footer {
+    margin-bottom: 40px;
+    border: 1px solid #f0f0f0;
+    padding: 15px;
+    text-align: right;
+}
+
+.detail_footer button {
+    margin-left: 15px;
+    margin-right: 5px;
+
+}
+
+.detail_footer span {
+    margin-right: 8px;
+}
