@@ -44,6 +44,11 @@ router.get('/', function (req, res, next) {
   });
 });
 
+//新增页面
+router.get('/add',function(req,res,next){
+  res.render('pages/add', { title: '纪路' });
+});
+
 //详情页面
 router.get('/detail', function (req, res, next) {
   const thisId = req.query.id * 1;

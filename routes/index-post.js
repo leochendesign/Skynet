@@ -5,7 +5,9 @@ var DBP = require('./../modules/dbPromise.js');
 
 //删除文章
 router.post('/detail_rm', function (req, res, next) {
-  res.send({ code: 0, data: '删除成功' });
+  DB.remove('myData', 'articleData', { id: req.body.id * 1 }, function (err, docs) {
+    res.send({ code: 0, data: docs });
+  });
 });
 
 module.exports = router;

@@ -207,3 +207,9 @@ body {
 .detail_footer span {
     margin-right: 8px;
 }
+
+.detail_title_info .label {
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 5px 8px;
+}
