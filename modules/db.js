@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var dbURL = 'mongodb://localhost:27017';
 
 function connectDb(callback) {
-    MongoClient.connect(dbURL, function (err, db) {
+    MongoClient.connect(dbURL, { useNewUrlParser: true }, function (err, db) {
         if (err) {
             console.log('数据库连接失败');
             return;
@@ -61,5 +61,14 @@ exports.remove = function (dbname, collectionname, json, callback) {
         const DB = db.db(dbname);
         const collection = DB.collection(collectionname);
         collection.remove(json, callback)
+    })
+}
+
+//更新单条数据数据
+exports.updateOne = function (dbname, collectionname, query, update, callback) {
+    connectDb(function (db) {
+        const DB = db.db(dbname);
+        const collection = DB.collection(collectionname);
+        collection.updateOne(query, { $set: update }, callback)
     })
 }

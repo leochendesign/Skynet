@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 登陆页面验证状态反向绑定
 app.use(['/login'], validate.valLogout);
 //登录验证中间件绑定
-app.get(['/'], validate.valLogin);
+app.get(['/','/detail','/add'], validate.valLogin);
 
 //定义get路由
 app.use('/', indexRouter);
@@ -52,6 +52,7 @@ app.use('/login', loginRouter);
 app.use('/post', indexRouterPost);
 app.use('/login-post', loginRouterPost);
 
+/*
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -67,5 +68,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('err/error', { title: '错误' });
 });
+*/
 
 module.exports = app;

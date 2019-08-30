@@ -45,8 +45,8 @@ router.get('/', function (req, res, next) {
 });
 
 //新增页面
-router.get('/add',function(req,res,next){
-  res.render('pages/add', { title: '纪路' });
+router.get('/add', function (req, res, next) {
+  res.render('pages/add', { title: '纪路-新增文章', user_name: req.session.userName, user_id: req.session.userId });
 });
 
 //详情页面
@@ -57,9 +57,27 @@ router.get('/detail', function (req, res, next) {
       res.render('err/error', { title: '错误' });
     } else {
       res.render('pages/detail', {
-        title: '纪路',
+        title: '纪路-' + docs[0].title,
         user_name: req.session.userName,
         data: docs[0],
+      });
+    }
+  });
+});
+
+//编辑页面
+router.get('/edit', function (req, res, next) {
+  const thisId = req.query.id * 1;
+  DB.find('myData', 'articleData', { id: thisId }, function (err, docs) {
+    if (err) {
+      res.render('err/error', { title: '错误' });
+    } else {
+      res.render('pages/edit', {
+        title: '纪路-编辑',
+        user_name: req.session.userName,
+        user_id: req.session.userId,
+        data: docs[0],
+        art_id: req.query.id,
       });
     }
   });

@@ -44,7 +44,11 @@ router.post('/sign-in', function (req, res, next) {
                 upData_time: moment().format('YYYY-MM-DD HH:mm:ss'),
             }
             DB.insertOne('myData', 'userData', instertDoc, function (err, result) {
-                res.send({ code: 0, data: '登陆成功' });
+                if(err){
+                    res.send({ code: 500, data: '注册失败，请稍后重试' });
+                }else {
+                    res.send({ code: 0, data: '注册成功' });
+                }
             });
         });
     });
