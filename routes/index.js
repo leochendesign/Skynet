@@ -56,9 +56,11 @@ router.get('/detail', function (req, res, next) {
     if (err) {
       res.render('err/error', { title: '错误' });
     } else {
+      console.log(docs[0]);
       res.render('pages/detail', {
         title: '纪路-' + docs[0].title,
         user_name: req.session.userName,
+        user_id: req.session.userId,
         data: docs[0],
       });
     }

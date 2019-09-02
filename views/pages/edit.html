@@ -39,13 +39,22 @@
                 <label for="general">摘要</label>
                 <textarea class="form-control" rows="3" id="general" placeholder="请输入文章摘要"><%=data.general%></textarea>
             </div> 
-            <div class="form-group">
-                <label for="part">内容</label>
+            <div class="form-group" id="allPart">
+                <label for="part">正文段落</label>
                 <%data.text.forEach(function(item){%>
-                <textarea class="form-control part" rows="12" placeholder="请输入文章内容" style="margin-bottom: 15px"><%=item%></textarea>
+                <textarea class="form-control part" rows="12" placeholder="请输入文章内容"
+                    style="margin-bottom: 15px"><%=item%></textarea>
                 <%})%>
             </div>
         </form>
+        <div style="margin-bottom: 30px;text-align: center">
+            <button style="margin: 0 20px" type="button" class="btn btn-link" onclick="addPart()">
+                <p style="margin-bottom: 0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></p>点击添加段落
+            </button>
+            <button style="margin: 0 20px" type="button" class="btn btn-link" onclick="rmPart()">
+                <p style="margin-bottom: 0"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></p>点击删除段落
+            </button>
+        </div>
         <div class="detail_footer">
             <button type="button" class="btn btn-primary" onclick="editArt()"><span class="glyphicon glyphicon-ok"
                     aria-hidden="true"></span>保存修改</button>
@@ -60,12 +69,14 @@
         function editArt() {
             var txtArr = [];
             var allPart = $('.part');
-            for(var i=0;i<allPart.length;i++){
-                txtArr.push(allPart.eq(i).val());
+            for (var i = 0; i < allPart.length; i++) {
+                if (allPart.eq(i).val()) {
+                    txtArr.push(allPart.eq(i).val());
+                }
             };
             var txtStr = JSON.stringify(txtArr)
             var postData = {
-                id:'<%=art_id%>',
+                id: '<%=art_id%>',
                 title: $('#title').val(),
                 text: txtStr,
                 general: $('#general').val(),
@@ -85,20 +96,41 @@
                 layer.msg('请填写文章摘要');
                 return false;
             }
-            if (!postData.text) {
+            if (txtArr.length == 0) {
                 layer.msg('请填写文章内容');
                 return false;
             }
+            layer.load(1, {
+                shade: [0.8, '#393D49']
+            });
             $.post('/post/edit_art', postData, function (data) {
+                layer.closeAll();
                 if (data.code == 0) {
                     layer.msg(data.data);
-                    setTimeout(function(){
-                        window.location.href='/detail?id=<%=art_id%>';
-                    },500);
+                    setTimeout(function () {
+                        window.location.href = '/detail?id=<%=art_id%>';
+                    }, 500);
                 } else {
                     layer.msg(data.data);
                 }
             });
+        }
+
+        //点击添加段落函数
+        function addPart() {
+            var obj =
+                '<textarea class="form-control part" rows="8" placeholder="请输入文章内容" style="margin-bottom: 15px"></textarea>';
+            $('#allPart').append(obj);
+        }
+
+        //点击删除段落函数
+        function rmPart() {
+            var lastPart = $('.part').eq($('.part').length - 1);
+            if ($('.part').length > 1) {
+                lastPart.remove();
+            } else {
+                layer.msg('必须保留至少一个段落');
+            }
         }
     </script>
 </body>
